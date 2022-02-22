@@ -12,8 +12,7 @@
     "noEmit": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "types": ["txt.d.ts"]
+    "noImplicitReturns": true
   },
-  "include": ["src"]
+  "include": ["src/index.ts", "src/data/*"]
 }
