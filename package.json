@@ -1,0 +1,26 @@
+{
+  "name": "afinn",
+  "version": "0.0.1",
+  "description": "AFINN sentiment analysis ported to Typescript",
+  "main": "./dist/tsc/index.js",
+  "types": "./dist/tsc/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest",
+    "test:watch": "jest --watchAll",
+    "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx"
+  },
+  "repository": "https://github.com/cmpadden/afinn",
+  "author": "Colton Padden",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^27.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.9.1",
+    "@typescript-eslint/parser": "^5.9.1",
+    "esbuild": "^0.14.11",
+    "eslint": "^8.6.0",
+    "typescript": "^4.5.4",
+    "vite": "^2.8.4",
+    "vitest": "^0.5.0"
+  }
+}
