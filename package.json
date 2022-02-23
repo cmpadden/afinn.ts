@@ -1,7 +1,7 @@
 {
-  "name": "afinn",
+  "name": "afinn.ts",
   "version": "0.0.1",
-  "description": "AFINN sentiment analysis ported to Typescript",
+  "description": "AFINN wordlist-based sentiment analysis",
   "repository": "https://github.com/cmpadden/afinn",
   "author": "Colton Padden",
   "license": "MIT",

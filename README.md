@@ -1,7 +1,16 @@
 # AFINN
 
-AFINN sentiment analysis in Typescript: a wordlist-based approach for sentiment
-analysis. Implementation was ported from the [Python implementation](https://github.com/fnielsen/afinn).
+[![npm](https://img.shields.io/npm/v/afinn.ts)](https://www.npmjs.com/package/afinn.ts)
+[![Test](https://github.com/cmpadden/afinn.ts/workflows/Test/badge.svg)](https://github.com/cmpadden/afinn.ts/actions)
+
+AFINN sentiment analysis: a wordlist-based approach to sentiment analysis
+ported from the original [Python implementation](https://github.com/fnielsen/afinn) to Typescript.
+
+## Installation
+
+```
+yarn add afinn.ts
+```
 
 ## Examples
 
