@@ -15,7 +15,7 @@ yarn add afinn.ts
 ## Examples
 
 ```ts
-import { Afinn } from "afinn";
+import Afinn from "afinn.ts";
 const afinn = Afinn({ language: "en" });
 afinn.score("This is utterly excellent!");
 ```
