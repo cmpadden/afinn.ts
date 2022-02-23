@@ -91,6 +91,15 @@ describe("tests translated from original implementation", () => {
   //   });
 });
 
+describe("new test for custom functionality", () => {
+  test("scores with word mappings", () => {
+    const afinn = new Afinn({ language: "en" });
+    expect(afinn.scores("The quick brown fox jumped over the lazy dog")).toEqual([
+      { word: "lazy", score: -1 },
+    ]);
+  });
+});
+
 // // test('emoticon_upper_case', () => {
 // //     const afinn = new Afinn()
 // //     afinn.setup_from_file(join(afinn.data_dir(), 'AFINN-emoticon-8.txt'), word_boundary=False)

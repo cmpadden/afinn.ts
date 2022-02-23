@@ -2,7 +2,8 @@
 //
 // Improvement Ideas:
 // - dynamically load dictionaries, either from `import()` statement, or downloading from GitHub
-//
+// - return scores w/ token mappings eg. [{ token: 'bad', score: 0.0 }]
+
 
 import AFINN_DA from "./data/AFINN-da-32.txt?raw";
 import AFINN_EN from "./data/AFINN-en-165.txt?raw";
@@ -122,14 +123,14 @@ export default class Afinn {
   }
 
   /**
-   * Compute individual sentiment scores for words in a given piece of `text`
+   * Compute individual sentiment scores for words and phrases in a given piece of `text`
    *
    * @param text - string to computer sentiment score
    */
-  scores(text: string): Array<number> {
+  scores(text: string): Array<{ word: string, score: number}> {
     const tokens = this.extractMatchingDictionaryWords(text.toLowerCase());
     return tokens.map((token) => {
-      return this.dictionary[token];
+      return { word: token, score: this.dictionary[token] };
     });
   }
 
@@ -139,7 +140,7 @@ export default class Afinn {
    * @param text - string to computer sentiment score
    */
   score(text: string): number {
-    return this.scores(text).reduce((sum, score) => sum + score, 0);
+    return this.scores(text).reduce((sum, score) => sum + score.score, 0);
   }
 
   /**
