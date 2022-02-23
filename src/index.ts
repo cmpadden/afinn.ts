@@ -1,7 +1,7 @@
 // AFINN dictionary-based sentiment analysis ported to Javascript
 //
 // Improvement Ideas:
-// - dynamically load dictionaries, either from `import` statement, or downloading from GitHub
+// - dynamically load dictionaries, either from `import()` statement, or downloading from GitHub
 //
 
 import AFINN_DA from "./data/AFINN-da-32.txt?raw";
@@ -111,7 +111,7 @@ export class Afinn {
    */
   extractMatchingDictionaryWords(
     text: string,
-    cleanWhitespace: boolean = true
+    cleanWhitespace = true
   ): Array<string> {
     if (cleanWhitespace) {
       text = text.replace(/\s+/, " ");
