@@ -56,7 +56,7 @@ interface AfinnOptions {
   wordBoundary?: boolean;
 }
 
-export class Afinn {
+export default class Afinn {
   language: SupportedLanguage;
   emoticons: boolean;
   wordBoundary: boolean;
