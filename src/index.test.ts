@@ -1,4 +1,4 @@
-import { Afinn } from "./index";
+import Afinn from "./index";
 import { describe, test, expect } from "vitest";
 
 describe("tests translated from original implementation", () => {
