@@ -4,7 +4,6 @@
 // - dynamically load dictionaries, either from `import()` statement, or downloading from GitHub
 // - return scores w/ token mappings eg. [{ token: 'bad', score: 0.0 }]
 
-
 import AFINN_DA from "./data/AFINN-da-32.txt?raw";
 import AFINN_EN from "./data/AFINN-en-165.txt?raw";
 import AFINN_FI from "./data/AFINN-fi-165.txt?raw";
@@ -62,6 +61,7 @@ export default class Afinn {
   emoticons: boolean;
   wordBoundary: boolean;
   dictionary: WordDictionary;
+  wordPattern: RegExp;
 
   /**
    * @param language - Specify language dictionary (default: en)
@@ -77,6 +77,7 @@ export default class Afinn {
     this.emoticons = emoticons;
     this.wordBoundary = wordBoundary;
     this.dictionary = this.loadDictionary();
+    this.wordPattern = this.regexFromWords(Object.keys(this.dictionary));
   }
 
   /**
@@ -95,12 +96,20 @@ export default class Afinn {
    *
    * @param tokens - array of words to construct a regular expression
    */
-  regexFromWords(tokens: Array<string>): RegExp {
+  regexFromWords(tokens: Array<string>, wordBoundaries = true): RegExp {
     const tokensEscaped = tokens
       .sort((a, b) => b.length - a.length) // longest tokens must come first to prevent sub-string matches
       .map((s) => this.regexEscape(s)); // some tokens may contain problematic characters
 
-    return new RegExp(tokensEscaped.join("|"), "gu");
+    let pattern = "(?:" + tokensEscaped.join("|") + ")";
+
+    // word boundaries via `\b` don't support unicode characters in JavaScript, so we are using a negated unicode letter
+    // category \p{L} with lookaheads and lookbehinds. There will likely be scenarios where this doesn't work, and
+    // further validation is required.
+    if (wordBoundaries) {
+      pattern = "(?<=^|[\\P{L}])" + pattern + "(?=$|[\\P{L}])";
+    }
+    return new RegExp(pattern, "gmu");
   }
 
   /**
@@ -117,8 +126,7 @@ export default class Afinn {
     if (cleanWhitespace) {
       text = text.replace(/\s+/, " ");
     }
-    const wordPattern = this.regexFromWords(Object.keys(this.dictionary));
-    const matches = text.match(wordPattern);
+    const matches = text.match(this.wordPattern);
     return matches || [];
   }
 
@@ -127,7 +135,7 @@ export default class Afinn {
    *
    * @param text - string to computer sentiment score
    */
-  scores(text: string): Array<{ word: string, score: number}> {
+  scores(text: string): Array<{ word: string; score: number }> {
     const tokens = this.extractMatchingDictionaryWords(text.toLowerCase());
     return tokens.map((token) => {
       return { word: token, score: this.dictionary[token] };

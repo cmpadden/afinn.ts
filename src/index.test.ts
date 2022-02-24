@@ -1,6 +1,22 @@
 import Afinn from "./index";
 import { describe, test, expect } from "vitest";
 
+describe("new test for robustness and custom functionality", () => {
+  test("scores with word mappings", () => {
+    const afinn = new Afinn({ language: "en" });
+    expect(
+      afinn.scores("The quick brown fox jumped over the lazy dog")
+    ).toEqual([{ word: "lazy", score: -1 }]);
+  });
+  test("ensure word boundaries are adhered, and substrings aren't matched", () => {
+    const afinn = new Afinn({ language: "en" });
+    // shouldn't match ugh of through
+    expect(afinn.scores("through hard times")).toEqual([
+      { word: "hard", score: -1 },
+    ]);
+  });
+});
+
 describe("tests translated from original implementation", () => {
   test("score", () => {
     const afinn = new Afinn({});
@@ -89,15 +105,6 @@ describe("tests translated from original implementation", () => {
 
   //     expect(afinn.score("BAD BAD BAD :-)")).toBeLessThan(0);
   //   });
-});
-
-describe("new test for custom functionality", () => {
-  test("scores with word mappings", () => {
-    const afinn = new Afinn({ language: "en" });
-    expect(afinn.scores("The quick brown fox jumped over the lazy dog")).toEqual([
-      { word: "lazy", score: -1 },
-    ]);
-  });
 });
 
 // // test('emoticon_upper_case', () => {

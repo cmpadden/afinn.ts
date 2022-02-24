@@ -1,6 +1,6 @@
 {
   "name": "afinn.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "AFINN wordlist-based sentiment analysis",
   "repository": "https://github.com/cmpadden/afinn",
   "author": "Colton Padden",
