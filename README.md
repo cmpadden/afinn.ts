@@ -14,7 +14,8 @@ yarn add afinn.ts
 
 ## Demo
 
-A demonstration of the `afinn.ts` module can be found at [cmpadden/afinn.ts-demo](https://github.com/cmpadden/afinn.ts-demo).
+A demonstration of the `afinn.ts` module can be found in use at [https://cmpadden.github.io/afinn.ts-demo/](https://cmpadden.github.io/afinn.ts-demo/) with source code in the
+[cmpadden/afinn.ts-demo](https://github.com/cmpadden/afinn.ts-demo) repository.
 
 ![demo](https://user-images.githubusercontent.com/5807118/155581484-b38ded81-596e-4bef-8888-90e01d36e400.png)
 
