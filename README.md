@@ -16,7 +16,7 @@ yarn add afinn.ts
 
 A demonstration of the `afinn.ts` module can be found at [cmpadden/afinn.ts-demo](https://github.com/cmpadden/afinn.ts-demo).
 
-![demo](https://user-images.githubusercontent.com/5807118/155561046-4dfd1cae-d5fc-4a1e-a7d4-b3c1122e5124.png)
+![demo](https://user-images.githubusercontent.com/5807118/155581484-b38ded81-596e-4bef-8888-90e01d36e400.png)
 
 ## Examples
 
